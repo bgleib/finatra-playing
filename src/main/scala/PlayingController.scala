@@ -1,9 +1,9 @@
+import com.google.inject.Inject
 import com.twitter.finagle.http.Request
 import com.twitter.finatra.http.Controller
 import com.twitter.finatra.response.Mustache
 
-class PlayingController extends Controller {
-  private[this] val nbaService = new NBAService()
+class PlayingController(@Inject nbaService: NBAService) extends Controller {
 
   @Mustache("home")
   case class HomeView(name: String, points: String)
