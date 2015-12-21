@@ -4,6 +4,7 @@ import com.twitter.finatra.http.HttpServer
 object PlayingServerMain extends PlayingServer
 
 class PlayingServer extends HttpServer {
+  override val disableAdminHttpServer = true
   override val modules = Nil
 
   override def configureHttp(router: HttpRouter) = {
