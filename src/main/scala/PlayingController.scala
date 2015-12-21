@@ -6,4 +6,8 @@ class PlayingController extends Controller {
     info("Hi was called")
     "Hello Monica!"
   }
+
+  get("/pic") { request: Request =>
+    response.ok.file("/bleib.jpg")
+  }
 }
