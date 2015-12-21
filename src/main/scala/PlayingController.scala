@@ -3,19 +3,14 @@ import com.twitter.finatra.http.Controller
 import com.twitter.finatra.response.Mustache
 
 class PlayingController extends Controller {
-  get("/hello") { request: Request =>
-    info("Hi was called")
-    "Hello Monica!"
-  }
+  private[this] val nbaService = new NBAService()
 
   @Mustache("home")
-  case class HomeView(message: String)
+  case class HomeView(name: String, points: String)
 
-  get("/home") { request: Request =>
-    HomeView("Blah blah")
-  }
-
-  get("/pic") { request: Request =>
-    response.ok.file("/bleib.jpg")
+  get("/") { request: Request =>
+    nbaService.get().map { points =>
+      HomeView("Steph Curry", points.toString)
+    }
   }
 }
