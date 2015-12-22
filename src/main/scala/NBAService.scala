@@ -2,7 +2,6 @@ package com.bleib.finatra_playing
 
 import com.google.inject.Inject
 import com.twitter.finatra.httpclient.{RequestBuilder, HttpClient}
-import com.twitter.finatra.json.FinatraObjectMapper
 import com.twitter.util.Future
 
 class NBAService @Inject()(httpClient: HttpClient) {

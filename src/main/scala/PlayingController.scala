@@ -12,12 +12,9 @@ class PlayingController @Inject()(nbaService: NBAService, mapper: FinatraObjectM
   case class HomeView(name: String, points: String)
 
   get("/home") { request: Request =>
-//    nbaService.get().map { points =>
-//      info(s"Points are $points")
-//      HomeView("Steph Curry", points.toString)
-//    }
-
-    val json2 = """{"name":"Ben","blah":{"a":"1","b":"2"}}"""
-    mapper.parse[Thingy](json2).toString
+    nbaService.get().map { points =>
+      info(s"Points are $points")
+      HomeView("Steph Curry", points.toString)
+    }
   }
 }
