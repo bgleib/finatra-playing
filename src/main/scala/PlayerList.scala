@@ -44,7 +44,7 @@ case class PlayerInfo(
   gamesPlayed: String
 ) {
   lazy val (firstName, lastName) = displayName.split(", ") match {
-    case Array(first, last) => (first, last)
+    case Array(last, first) => (first, last)
     case _ => ("", displayName)
   }
 }
