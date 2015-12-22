@@ -1,9 +1,11 @@
+package com.bleib.finatra_playing
+
 import com.google.inject.Inject
 import com.twitter.finatra.httpclient.{RequestBuilder, HttpClient}
 import com.twitter.finatra.json.FinatraObjectMapper
 import com.twitter.util.Future
 
-class NBAService @Inject()(mapper: FinatraObjectMapper, httpClient: HttpClient) {
+class NBAService @Inject()(httpClient: HttpClient) {
   def get(): Future[String] = {
     val season = "2015-16"
     val request = RequestBuilder.get(s"/stats/commonallplayers?LeagueId=00&IsOnlyCurrentSeason=1&Season=$season")

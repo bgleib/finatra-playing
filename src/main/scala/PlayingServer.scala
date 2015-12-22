@@ -1,3 +1,5 @@
+package com.bleib.finatra_playing
+
 import com.twitter.finagle.http.{Response, Request}
 import com.twitter.finatra.http.HttpServer
 import com.twitter.finatra.http.filters.CommonFilters
