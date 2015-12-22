@@ -6,10 +6,15 @@ import com.twitter.finatra.http.filters.CommonFilters
 import com.twitter.finatra.http.routing.HttpRouter
 import com.twitter.finatra.httpclient.modules.HttpClientModule
 import com.twitter.finatra.json.modules.FinatraJacksonModule
+import com.twitter.finatra.json.utils.CamelCasePropertyNamingStrategy
 import com.twitter.finatra.logging.filter.{LoggingMDCFilter, TraceIdMDCFilter}
 import com.twitter.finatra.logging.modules.Slf4jBridgeModule
 
 object PlayingServerMain extends PlayingServer
+
+object CustomJacksonModule extends FinatraJacksonModule {
+  override val propertyNamingStrategy = CamelCasePropertyNamingStrategy
+}
 
 class PlayingServer extends HttpServer {
 
@@ -17,8 +22,10 @@ class PlayingServer extends HttpServer {
     def dest: String = "stats.nba.com:80"
   }
 
+  override def jacksonModule = CustomJacksonModule
+
   override val disableAdminHttpServer = true
-  override val modules = Seq(Slf4jBridgeModule, FinatraJacksonModule, httpClientModule)
+  override val modules = Seq(Slf4jBridgeModule, httpClientModule)
 
   override def configureHttp(router: HttpRouter) = {
     router
