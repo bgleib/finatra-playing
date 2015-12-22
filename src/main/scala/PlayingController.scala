@@ -12,7 +12,6 @@ class PlayingController @Inject()(nbaService: NBAService) extends Controller {
     nbaService.get().map { points =>
       info(s"Points are $points")
       HomeView("Steph Curry", points.toString)
-      "Hello hello"
     }
   }
 }
