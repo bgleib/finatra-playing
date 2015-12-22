@@ -9,10 +9,10 @@ import com.twitter.util.Future
 
 class PlayingController @Inject()(nbaService: NBAService, mapper: FinatraObjectMapper) extends Controller {
 
-  @Mustache("home")
+  @Mustache("player_info")
   case class HomeView(name: String, startYear: String)
 
-  get("/start_year/:*") { request: Request =>
+  get("/player_info/:*") { request: Request =>
     request.params("*").split("_") match {
       case Array(firstName, lastName) =>
         nbaService.getPlayerInfo(firstName, lastName).map { playerInfoOpt =>
