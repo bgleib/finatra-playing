@@ -17,7 +17,7 @@ class PlayingController @Inject()(nbaService: NBAService, mapper: FinatraObjectM
       case Array(firstName, lastName) =>
         nbaService.getPlayerInfo(firstName, lastName).map { playerInfoOpt =>
           playerInfoOpt.map { playerInfo =>
-            HomeView(s"$firstName $lastName", playerInfo.startYear.toString)
+            HomeView(s"${playerInfo.firstName} ${playerInfo.lastName}", playerInfo.startYear.toString)
           }.getOrElse(response.badRequest(s"Couldn't find ${request.params("*").replace("_", " ")}"))
         }
       case _ => Future.value(response.badRequest("Please specify firstName_lastName"))
